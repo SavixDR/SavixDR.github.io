@@ -89,9 +89,8 @@
                </div>
                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
                   <li>
-                     <button>
-                        <fb:login-button 
-                          class ="buy"
+                     <button class ="buy">
+                        <fb:login-button
                           scope="public_profile,email"
                           onlogin="checkLoginState();">
                           Login
@@ -567,8 +566,10 @@
       </script>    
       <script>
          function checkLoginState() {
+            console.log("Test")
            FB.getLoginStatus(function(response) {
              statusChangeCallback(response);
+             console.log(response);
            });
          }
          </script>
