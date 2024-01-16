@@ -537,18 +537,6 @@
       </script> 
 
       <script>
-         window.fbAsyncInit = function() {
-         FB.init({
-            appId      : '{your-app-id}',
-            cookie     : true,
-            xfbml      : true,
-            version    : '{api-version}'
-         });
-            
-         FB.AppEvents.logPageView();   
-            
-         };
-      
          (function(d, s, id){
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) {return;}
@@ -556,22 +544,44 @@
             js.src = "https://connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
          }(document, 'script', 'facebook-jssdk'));
-      </script>
-      <script>
-         $(document).ready(function(){
-             FB.getLoginStatus(function(response) {
-                 statusChangeCallback(response);
-             });
-         });
-      </script>    
-      <script>
+
+         window.fbAsyncInit = function() {
+            FB.init({
+               appId      : '1048021373080818',
+               cookie     : true,
+               xfbml      : true,
+               version    : 'v18.0'
+            });
+            
+            FB.login(function(response) {
+               if (response.authResponse) {
+                  console.log('Welcome!  Fetching your information.... ');
+                  FB.api('/me', {fields: 'name, email'}, function(response) {
+                     document.getElementById("profile").innerHTML = "Good to see you, " + response.name + ". i see your email address is " + response.email
+                  });
+               } else {
+                  <!-- If you are not logged in, the login dialog will open for you to login asking for permission to get your public profile and email -->
+                  console.log('User cancelled login or did not fully authorize.'); }
+            });
+         };
+         FB.AppEvents.logPageView();
+
+         };
+
          function checkLoginState() {
-           FB.getLoginStatus(function(response) {
-             statusChangeCallback(response);
-             console.log(response);
-           });
+            console.log("Test")
+            FB.getLoginStatus(function(response) {
+               statusChangeCallback(response);
+               console.log(response);
+            });
          }
-         </script>
-              
+
+         $(document).ready(function(){
+            FB.getLoginStatus(function(response) {
+               statusChangeCallback(response);
+            });
+         });
+      </script>
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
    </body>
 </html>
