@@ -5,6 +5,8 @@
    <meta charset="UTF-8">
 </head>
 <body>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0&appId=1048021373080818" nonce="Wpwgds0P"></script>
 <script>
 
    function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
@@ -20,7 +22,6 @@
 
 
    function checkLoginState() {               // Called when a person is finished with the Login Button.
-      console.log("Test")
       FB.getLoginStatus(function(response) {   // See the onlogin handler
          statusChangeCallback(response);
       });
@@ -54,9 +55,9 @@
 
 
 <!-- The JS SDK Login Button -->
-<button onClick="checkLoginState()">Login
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"login_text="Login">
-</fb:login-button></button>
+<div class="fb-login-button" data-width="" data-size="" data-button-type="" data-layout="" data-auto-logout-link="true" data-use-continue-as="false"></div>
+<!--<fb:login-button scope="email" onlogin="checkLoginState();" login_text="Login">Login-->
+<!--</fb:login-button>-->
 
 <div id="status">
 </div>
